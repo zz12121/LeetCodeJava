@@ -26,7 +26,7 @@ public class test0004 {
         } else {
             k = totalLength/2 + 1;
         }
-        
+
         return 0;
     }
 }
