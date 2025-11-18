@@ -20,7 +20,7 @@ public class test0003 {
     }
 
     private static int noSameLength(String s) {
-        int maxLength = 0;
+        int maxLength = 1;
         String[] split = s.split("");
         if (split.length == 1) {
             return 1;
@@ -28,8 +28,9 @@ public class test0003 {
         int offert = 0;
         int end = 1;
         for (int i = 1; i < split.length; i++) {
-            if (checkWindow(split[i], s.substring(offert, end))) {
-                offert ++;
+            int calculateIndex = calculateWindow(split[i], s.substring(offert, end));
+            if (calculateIndex != 0) {
+                offert += calculateIndex;
                 end ++;
             } else {
                 end ++;
@@ -39,7 +40,13 @@ public class test0003 {
         return maxLength;
     }
 
-    private static boolean checkWindow(String s, String substring) {
-        return Arrays.asList(substring.split("")).contains(s);
+    private static int calculateWindow(String s, String substring) {
+        String[] split = substring.split("");
+        for (int i = 0; i < split.length; i++) {
+            if (s.equals(split[i])) {
+                return 1;
+            }
+        }
+        return 0;
     }
 }
